@@ -1,0 +1,32 @@
+<%- include ('partials/header') %> 
+<%- include ('partials/nav-min') %>
+<div class="container mt-5" style="border: 1px solid black; border-radius: 6px;">
+    <h1 class="text-center">My Task</h1>
+    <% for( let i = 0; i < items.length; i++ ) { %>
+        <div class="d-flex justify-content-between my-2">
+            <% if (items[i].is_done === 0) { %>
+                <span><h5>- <%= items[i].taskName %> </h5></span>
+                <div class="d-flex">
+                    <form method="post">
+                        <input type="hidden" name="id" value="<%= items[i].id %> ">
+                        <button type="submit" class="btn btn-success m-1" value="done">Done</button>
+                    </form>
+                    <form action="/deleteTask/<%= items[i].id %> " method="post">
+                        <input type="hidden" name="id" value="<%= items[i].id %> ">
+                        <input type="hidden" name="parId" value="<%= parId %>">
+                        <button type="submit" class="btn btn-danger m-1">Delete</button>
+                    </form>
+                </div>
+            <% } else { %>
+                <span><h5 style="text-decoration: line-through;">- <%= items[i].taskName %> </h5></span>
+                    <form action="/deleteTask/<%= items[i].id %> " method="post">
+                        <input type="hidden" name="id" value="<%= items[i].id %>">
+                        <input type="hidden" name="parId" value="<%= parId %>">
+                        <button type="submit" class="btn btn-danger m-1">Delete</button>
+                    </form>
+                </span>
+            <% } %>
+        </div>
+    <% } %>
+</div>
+<%- include ('partials/footer') %>

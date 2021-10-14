@@ -1,0 +1,23 @@
+<%- include ('partials/header') %> 
+<%- include ('partials/nav-min') %>
+    <div style="padding-top: 55px;">
+        <h1 class="text-center" >Add Your Task</h1>
+        <div class="container">
+            <form method="post">
+                <div class="form-group">
+                    <label class="my-2" style="font-weight: bold;">Task Name</label>
+                    <textarea name="name" class="form-control" placeholder="enter your product description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="my-2" style="font-weight: bold;">Collections</label>
+                    <select name="collections">
+                        <% for( let i = 0; i < items.length; i++ ) { %>
+                            <option value="<%= items[i].id %> "><%= items[i].name %> </option>
+                        <% } %>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Add</button>
+              </form>
+        </div>
+    </div>
+<%- include ('partials/footer') %>
